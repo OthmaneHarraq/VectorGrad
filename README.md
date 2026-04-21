@@ -28,18 +28,18 @@ Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/da
 └── README.md
 
 ## Architecture
-
+```
 Input (784)
     → Linear(784 → 128) + ReLU        
     → ResidualBlock(128) × 3        
     → Linear(128 → 25) + Softmax  
-
+```
 Each `ResidualBlock` applies:
-
+```
 output = ReLU(lin2(ReLU(lin1(x))) + x)
-
+```
 with bfloat16 casting between layers for reduced numerical noise.
-
+```
 ## Results
 
 | Learning Rate | Batch Size | Test Accuracy |
@@ -51,7 +51,7 @@ with bfloat16 casting between layers for reduced numerical noise.
 | 0.003  | 16  | 32.99% ❌ |
 
 Best stable configuration: `lr=0.0005, batch_size=128`
-
+```
 ## Setup
 
 ```bash
