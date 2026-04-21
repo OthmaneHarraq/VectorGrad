@@ -7,12 +7,11 @@ def cross_entropy(y_pred, y_true, num_classes):
     Cross-entropy loss between predicted probabilities and true class indices.
 
     Args:
-        y_pred:      Tensor of shape (batch, num_classes) — softmax output
-        y_true:      NumPy array of integer class indices, shape (batch,)
+        y_pred: Tensor of shape (batch, num_classes)
+        y_true: NumPy array of integer class indices with shape (batch,)
         num_classes: Total number of classes
 
-    Returns:
-        Scalar Tensor representing the mean cross-entropy loss.
+    Returns Scalar Tensor representing the mean cross-entropy loss.
     """
     Y_onehot = Tensor(np.eye(num_classes)[y_true])
     return -(Y_onehot * y_pred.log()).mean() * num_classes
@@ -20,14 +19,14 @@ def cross_entropy(y_pred, y_true, num_classes):
 
 class Adam:
     """
-    AdamW optimizer — Adam with decoupled L2 weight decay.
+    AdamW optimizer with decoupled L2 weight decay.
 
     Args:
-        params:       List of Tensor parameters to optimize
-        lr:           Learning rate (default: 0.001)
-        beta1:        First moment decay (default: 0.9)
-        beta2:        Second moment decay (default: 0.999)
-        eps:          Numerical stability constant (default: 1e-8)
+        params: List of Tensor parameters to optimize
+        lr: Learning rate (default: 0.001)
+        beta1: First moment decay (default: 0.9)
+        beta2: Second moment decay (default: 0.999)
+        eps: Numerical stability constant (default: 1e-8)
         weight_decay: L2 regularization coefficient (default: 0.001)
     """
 
