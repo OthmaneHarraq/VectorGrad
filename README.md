@@ -19,7 +19,7 @@ Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/da
 
 ## Project Structure
 
-├── notebook.ipynb        
+├── vectorgrad.ipynb        
 ├── src/
 │   ├── engine.py         
 │   ├── nn.py             
