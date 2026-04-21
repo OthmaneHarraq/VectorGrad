@@ -10,12 +10,12 @@ Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/da
 
 ## What's implemented from scratch
 
-Scalar autograd engine: `src/engine.py` → `Value` 
-Batched tensor autograd: `src/engine.py` → `Tensor`
-Linear layer, MLP, Residual Block: `src/nn.py`
-AdamW optimizer: `src/optim.py`
-Cross-entropy loss: `src/optim.py`
-Training loop & evaluation: `src/train.py`
+- Scalar autograd engine: `src/engine.py` → `Value` 
+- Batched tensor autograd: `src/engine.py` → `Tensor`
+- Linear layer, MLP, Residual Block: `src/nn.py`
+- AdamW optimizer: `src/optim.py`
+- Cross-entropy loss: `src/optim.py`
+- Training loop & evaluation: `src/train.py`
 
 ## Project Structure
 
