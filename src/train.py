@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 from engine import Tensor
 from nn import ResidualMLP
-from optim import Adam, cross_entropy
+from optim import Adam, cross_entropy 
 
 NUM_CLASSES = 25  
 HIDDEN_DIM = 128
