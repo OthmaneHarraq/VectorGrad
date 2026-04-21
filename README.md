@@ -1,59 +1,44 @@
 # Neural Network from Scratch — ASL Sign Language MNIST
 
-A from-scratch implementation of a Residual MLP in pure Python and NumPy — no PyTorch, no TensorFlow, no autograd libraries. Every component is hand-written: the autograd engine, tensor operations, residual blocks, and the AdamW optimizer.
+An implementation of a Residual MLP from-scratch in pure Python and NumPy without the use of ML Libraries, such as PyTorch and TensorFlow. Every component is hand-written: the autograd engine, tensor operations, residual blocks, and the AdamW optimizer.
 
 Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/datasets/datamunge/sign-language-mnist) dataset (24-class classification, 34,627 samples).
 
-**Best test accuracy: ~98.5%**
+**Best test accuracy: ~99.95%**
 
----
+<img width="1514" height="463" alt="image" src="https://github.com/user-attachments/assets/331c7f07-f7f2-4e56-a52d-f1b14d8fc5d8" />
 
 ## What's implemented from scratch
 
-| Component | File |
-|---|---|
-| Scalar autograd engine | `src/engine.py` → `Value` |
-| Batched tensor autograd | `src/engine.py` → `Tensor` |
-| Linear layer, MLP, Residual Block | `src/nn.py` |
-| AdamW optimizer | `src/optim.py` |
-| Cross-entropy loss | `src/optim.py` |
-| Training loop & evaluation | `src/train.py` |
-
----
+Scalar autograd engine: `src/engine.py` → `Value` 
+Batched tensor autograd: `src/engine.py` → `Tensor`
+Linear layer, MLP, Residual Block: `src/nn.py`
+AdamW optimizer: `src/optim.py`
+Cross-entropy loss: `src/optim.py`
+Training loop & evaluation: `src/train.py`
 
 ## Project Structure
 
-```
-├── notebook.ipynb        # Full walkthrough with outputs and plots
+├── vectorgrad.ipynb        
 ├── src/
-│   ├── engine.py         # Value (scalar) and Tensor (batched) autograd
-│   ├── nn.py             # Linear, MLP, ResidualBlock, ResidualMLP
-│   ├── optim.py          # Adam optimizer and cross-entropy loss
-│   └── train.py          # Data loading, training loop, evaluation
-├── data/
-│   ├── sign_mnist_train.csv
-│   └── sign_mnist_test.csv
+│   ├── engine.py         
+│   ├── nn.py             
+│   ├── optim.py          
+│   └── train.py       
 └── README.md
-```
-
----
 
 ## Architecture
 
-```
 Input (784)
-    → Linear(784 → 128) + ReLU        # input projection
-    → ResidualBlock(128) × 3           # residual stack
-    → Linear(128 → 25) + Softmax       # output projection
-```
+    → Linear(784 → 128) + ReLU        
+    → ResidualBlock(128) × 3        
+    → Linear(128 → 25) + Softmax  
 
 Each `ResidualBlock` applies:
-```
-output = ReLU(lin2(ReLU(lin1(x))) + x)
-```
-with bfloat16 casting between layers for reduced numerical noise.
 
----
+output = ReLU(lin2(ReLU(lin1(x))) + x)
+
+with bfloat16 casting between layers for reduced numerical noise.
 
 ## Results
 
@@ -66,8 +51,6 @@ with bfloat16 casting between layers for reduced numerical noise.
 | 0.003  | 16  | 32.99% ❌ |
 
 Best stable configuration: `lr=0.0005, batch_size=128`
-
----
 
 ## Setup
 
