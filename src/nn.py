@@ -3,7 +3,7 @@ from engine import Tensor, cast_low
 
 
 class Linear:
-    """Fully connected layer with He-initialized weights."""
+    """Fully connected linear layer with He-initialized weights"""
 
     def __init__(self, nin, nout):
         self.weight = Tensor(np.random.randn(nin, nout) * np.sqrt(2.0 / nin), requires_grad=True)
@@ -17,7 +17,7 @@ class Linear:
 
 
 class MLP:
-    """Standard multi-layer perceptron with ReLU activations and softmax output."""
+    """Standard multi-layer perceptron with ReLU activations and softmax output"""
 
     def __init__(self, nin, nouts):
         sizes = [nin] + nouts
