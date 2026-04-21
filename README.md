@@ -19,12 +19,12 @@ Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/da
 
 ## Project Structure
 
-├── vectorgrad.ipynb        
+├── notebook.ipynb        
 ├── src/
 │   ├── engine.py         
 │   ├── nn.py             
 │   ├── optim.py          
-│   └── train.py       
+│   └── train.py            
 └── README.md
 
 ## Architecture
