@@ -4,7 +4,7 @@ from ml_dtypes import bfloat16
 
 
 def cast_low(x):
-    """Cast to bfloat16 and back to float64 for memory efficiency."""
+    """Cast to bfloat16 and back to float64 for memory efficiency"""
     return x.astype(bfloat16).astype(np.float64)
 
 
@@ -12,6 +12,7 @@ class Value:
     """
     Scalar-valued autograd engine.
     Tracks operations and supports backward pass via reverse-mode autodiff.
+    Inspired by Andrej Karpathy.
     """
 
     def __init__(self, data, _children=(), _op='', label=''):
@@ -124,6 +125,7 @@ class Value:
 
         build(self)
         self.grad = 1.0
+        
         for v in reversed(topo):
             if v._backwards:
                 v._backwards()
@@ -131,7 +133,7 @@ class Value:
 
 class Tensor:
     """
-    Batch-capable tensor autograd engine backed by NumPy.
+    Tensor version of autograd engine.
     Supports broadcasting, matmul, and common activation functions.
     """
 
@@ -153,22 +155,30 @@ class Tensor:
 
         def _backward():
             if out.grad is None:
-                return
+                return    
+                
             if self.requires_grad:
                 g = out.grad
+                
                 while g.ndim > self.data.ndim:
                     g = g.sum(axis=0)
+                    
                 for i, dim in enumerate(self.data.shape):
                     if dim == 1:
                         g = g.sum(axis=i, keepdims=True)
+                        
                 self.grad += g
+                
             if other.requires_grad:
                 g = out.grad
+                
                 while g.ndim > other.data.ndim:
                     g = g.sum(axis=0)
+                    
                 for i, dim in enumerate(other.data.shape):
                     if dim == 1:
                         g = g.sum(axis=i, keepdims=True)
+                        
                 other.grad += g
 
         out._backward = _backward
@@ -190,8 +200,10 @@ class Tensor:
         def _backward():
             if out.grad is None:
                 return
+                
             if self.requires_grad:
                 self.grad += out.grad @ other.data.T
+                
             if other.requires_grad:
                 other.grad += self.data.T @ out.grad
 
@@ -206,8 +218,10 @@ class Tensor:
         def _backward():
             if out.grad is None:
                 return
+                
             if self.requires_grad:
                 self.grad += other.data * out.grad
+                
             if other.requires_grad:
                 g = self.data * out.grad
                 while g.ndim > other.data.ndim:
