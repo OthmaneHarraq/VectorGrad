@@ -6,7 +6,8 @@ Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/da
 
 **Best test accuracy: ~99.32%**
 
-<img width="1514" height="463" alt="image" src="https://github.com/user-attachments/assets/331c7f07-f7f2-4e56-a52d-f1b14d8fc5d8" />
+<img width="1517" height="466" alt="image" src="https://github.com/user-attachments/assets/63b36ec1-c6aa-4b15-ab2b-fcd415840cc8" />
+
 
 ## What's implemented from scratch
 
