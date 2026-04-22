@@ -4,7 +4,7 @@ An implementation of a Residual MLP from-scratch in pure Python and NumPy withou
 
 Trained and evaluated on the [ASL Sign Language MNIST](https://www.kaggle.com/datasets/datamunge/sign-language-mnist) dataset (24-class classification, 34,627 samples).
 
-**Best test accuracy: ~99.95%**
+**Best test accuracy: ~99.32%**
 
 <img width="1514" height="463" alt="image" src="https://github.com/user-attachments/assets/331c7f07-f7f2-4e56-a52d-f1b14d8fc5d8" />
 
@@ -43,12 +43,16 @@ with bfloat16 casting between layers for reduced numerical noise.
 ## Results
 
 | Learning Rate | Batch Size | Test Accuracy |
-|---|---|---|
-| 0.0005 | 128 | **98.52%** |
-| 0.001  | 128 | 98.21% |
-| 0.003  | 128 | 97.19% |
-| 0.001  | 64  | 92.80% |
-| 0.003  | 16  | 32.99% ❌ |
+|---------------|------------|---------------|
+|        0.0005 |         16 |    **99.32%** |
+|        0.0005 |         64 |        91.89% |
+|        0.0005 |        128 |        97.59% |
+|         0.001 |         16 |        96.80% |
+|         0.001 |         64 |        97.65% |
+|         0.001 |        128 |        93.01% |
+|         0.003 |         16 |        17.07% |
+|         0.003 |         64 |        97.03% |
+|         0.003 |        128 |        97.34% |
 
 Best stable configuration: `lr=0.0005, batch_size=128`
 ```
@@ -64,7 +68,7 @@ Download the dataset from [Kaggle](https://www.kaggle.com/datasets/datamunge/sig
 python src/train.py
 ```
 
-Or open `notebook.ipynb` for the full walkthrough.
+Or open vectorgrad.ipynb for the full walkthrough.
 
 ---
 
